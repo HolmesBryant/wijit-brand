@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Wijit-Brand</title>
+    <script defer src="extra/scripts.js"></script>
+    <script type="module" src="wijit-brand.js"></script>
+    <!-- <script type="module" src="dist/wijit-brand.min.js"></script> -->
+    <link rel="stylesheet" href="extra/styles.css">
+
+    <style>
+        wijit-brand {
+            --color: limegreen;
+            --stroke-color: orange;
+            --stroke-width: 20;
+            width: 100%;
+            height: 100%;
+          }
+
+          #facebook {
+
+          }
+
+          #linkedin {
+            --filter: blur(10px);
+          }
+
+          #html5 {
+            --filter: drop-shadow(10px 10px 15px black);
+          }
+    </style>
+</head>
+<body>
+<h1>Wijit-Brand Web Component</h1>
+<p>A custom element that creates icons representing various brand logos</p>
+<details>
+    <summary>Readme</summary>
+    <div id="instructions"></div>
+</details>
+
+<section class="row">
+    <wijit-brand id="facebook"brand="facebook" link="https://google.com" inset>
+        <small>Facebook</small>
+    </wijit-brand>
+    <wijit-brand id="linkedin"brand="linkedin" link="https://hearthfirefarm.org">
+        <h1>LinkedIn</h1>
+    </wijit-brand>
+
+    <wijit-brand id="html5" brand="html5" viewbox="-60 0 512 512">
+        <small>Built with HTML5</small>
+    </wijit-brand>
+</section>
+
+</body>
+</html>
