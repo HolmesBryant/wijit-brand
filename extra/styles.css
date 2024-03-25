@@ -8,8 +8,8 @@ body {
     --pass-color: hsl(112, 70%, 75%);
     --text-color: rgb(40,40,40);
     --min: 2.5rem;
-    --pad: .25rem;
-    --gap: .5rem;
+    --pad: .5rem;
+    --gap: 1rem;
 
     background: var(--bg1-color);
     color: var(--text-color);
@@ -39,7 +39,7 @@ body * {
 
 /**** Backgrounds ****/
 
-    article,
+    figure,
     summary
     { background-color: var(--bg2-color); }
 
@@ -56,13 +56,14 @@ body * {
     { border: 2px solid var(--border-color); }
 
     details,
-    details[open] summary
+    figure,
+    summary
     { border: 1px solid var(--border-color); }
 
 
     hr,
     details,
-    article,
+    figure,
     section,
     summary
     { border-radius: .5rem; }
@@ -88,20 +89,31 @@ body * {
 	{ box-shadow: inset 2px 2px 5px rgba(0,0,0,0.5); }
 
 /**** Structure ****/
-
-	article
-	{
-		display: flex;
-		flex: 0 1 400px;
-		flex-direction: column;
-		padding: 10px;
+	fieldset {
+		max-width: max-content;
+		overflow-x: auto;
 	}
 
-	article > * {
+	figure
+	{
+		display: flex;
+		flex: 1 1 200px;
+		flex-direction: column;
+		gap: var(--gap);
+		margin: 0;
+		align-items: center;
+		padding: var(--pad);
+	}
+
+	figure > *:not(header) {
 		flex: 1;
 	}
 
-	article.wide {
+	figcaption {
+		margin-top: 1rem;
+	}
+
+	figure.wide {
 		flex: 0 1 600px;
 	}
 
@@ -148,21 +160,29 @@ body * {
 		flex-direction: column;
 		flex-wrap: wrap;
 		gap: var(--gap);
+		overflow-y: auto;
 		padding: var(--pad);
   		min-inline-size: var(--min-panel);
 	}
 
-	section > * {
-		border: 1px solid gray;
-		flex: 0 1 300px;
-		min-height: 300px;
-	}
+	section > *
+	{ flex: 1; }
 
 	section + section
 	{ margin: 1rem 0; }
 
 	section > header {
 		margin: 0;
+	}
+
+	select {
+		max-width: 90%;
+		overflow-x: auto;
+		text-overflow: ellipsis;
+	}
+
+	wijit-form section {
+		overflow: hidden;
 	}
 
 	.center > *,

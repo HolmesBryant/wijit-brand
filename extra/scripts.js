@@ -1,7 +1,13 @@
-function change (event, attr) {
-  const elem = document.querySelector('#demo-form');
-  const value = (attr === 'force-error') ? event.target.checked : event.target.value;
-  elem.setAttribute(attr, value);
+function change(evt, attr) {
+  const el = document.querySelector('#demo-item');
+
+  if ( attr.startsWith( '--' ) ) {
+    el.style.setProperty(attr, evt.target.value);
+  } else if (attr === 'caption') {
+    el.innerHTML = evt.target.value;
+  } else {
+    el.setAttribute( attr, evt.target.value );
+  }
 }
 
 /**

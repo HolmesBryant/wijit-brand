@@ -1,16 +1,15 @@
 # Wijit-Brand Web Component
 
-## Work in Progress!!
-This is beta software. It is likely to change. Use at your own risk.
-
 A web component that displays icons of various brand logos.
 
+Demo: [https://holmesbryant.github.io/wijit-brand/](https://holmesbryant.github.io/wijit-brand/)
+
 ##Features
-- Uses svg icons from Font Awesome (free) [https://fontawesome.com/](https://fontawesome.com/).
-- Allows you to wrap the icon in a link so you can link to your particular profile.
-- Color the icon however you want. You can use any color-space supported by css.
+- Uses svg icons from Font Awesome [Font Awesome](https://fontawesome.com/).
+- Color the icon however you want.
 - Allows you to set a stroke width and stroke color around the icon.
 - Allows you to set a css-style filter on the icon. You can use any filter supported by css.
+- Allows you to wrap the icon in a link.
 - Allows you to add caption text under the icon.
 - Allows you to change the viewBox of the svg element holding the icon.
 
@@ -22,18 +21,16 @@ Include the script tag in your HTTML page.
 
 Include a wijit-brand tag in the body
 
-    <wijit-brand type="html5"></wijit-brand>
+    <wijit-brand brand="html5"></wijit-brand>
 
-## Attrubutes
-- **brand** MANDATORY
+## Attributes
+- **brand** REQUIRED
     - The brand whose logo you wish to display. For a list of acceptable values, see the list at the bottom.
     - Acceptable values: Any string that matches one of the supported brands.
-- **filter** default: none
-    - This attribute allows you to set a visual effect on the icon, such as a drop shadow or a blur effect.
-    - Acceptable values: A string representing a css filter effect. See [CSS Filter Effects](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_filter_effects) for more info.
 - **link** default: none
-    - This attribute allows you to wrap the icon in a link. This can be used to, for example, link to a particular social media profile.
+    - This attribute allows you to wrap the icon in a link.
     - Acceptable values: Any valid URL
+
 - **viewbox** default: Automatically set depending on the brand.
     - This attribute sets the value of the viewBox of the svg element holding the icon. It affects the placement and clipping of the icon within the SVG viewport. You most likely won't have to set this unless you add a filter (such as a drop shadow) that causes an effect that spreads beyond the viewable area. For more info, see [SVG viewBox](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/viewBox)
     - Acceptable values: A string representing four numbers. These numbers, which are separated by whitespace or a comma, specify a rectangle which is mapped to the bounds of the icon's SVG viewport (not the browser viewport).
@@ -52,6 +49,20 @@ This component exposes several custom css properties which affect the appearance
       }
     </style>
 
+- **--color:** default: "rgb(40, 40, 40)". If the operating system is in "dark mode", the default color is "gainsboro", which is a very light gray.
+    - Determines the color of the icon.
+    - Acceptable values: any valid css color value
+- **--stroke-color:** default: none
+    - If you want a stroke around the icon, this determines the color of the stroke. You must also set --stroke-width to something other than "0".
+    - Acceptable values: Any valid css color value
+- **--stroke-width:** default: 0
+    - This is used in conjunction with --stroke-color. It determines the width of the stroke. Small values may not show up; a good starting point might be "10".
+    - Acceptable values: Integer or any valid css length value.
+- **--filter**: default: none
+    - This allows you to add one or more css filter effect(s) to the icon, for more info see [CSS Filters](https://developer.mozilla.org/en-US/docs/Web/CSS/filter)
+    - Acceptable values: Any valid css filter effect.
+    - **Note:** A special value of "url(#inset)" is exposed in order to to add an "inset" effect.
+
 ## Examples
 
 ### Adding a link
@@ -65,13 +76,47 @@ This component exposes several custom css properties which affect the appearance
       Built with HTML 5
     </wijit-brand>
 
-### Adding a filter
-
-    <wijit-brand brand="HTML5" filter="drop-shadow(10px 10px 15px black)"></wijit-brand>
-
 ### Changing the viewbox
 
     <wijit-brand brand="HTML5" viewbox="-60 0 512 512"></wijit-brand>
+
+### Changing the color
+
+    <style>
+    	wijit-brand {
+			--color: orange;
+		}
+	</style>
+
+### Adding a stroke
+	<style>
+		wijit-brand {
+			--stroke-color: lime;
+			--stroke-width: 1rem;
+		}
+	</style>
+
+### Adding a filter
+	// basic example
+	<style>
+		wijit-brand {
+			--filter: drop-shadow(10px 10px 10px dimgray);
+		}
+	</style>
+
+	// multiple filters
+	<style>
+		wijit-brand {
+			--filter: contrast(10%) blur(10px);
+		}
+	</style>
+
+	// inset effect
+	<style>
+		wijit-brand {
+			--filter: url(#inset) blur(1px);
+		}
+	</style>
 
 ## Supported Brands
 
@@ -562,4 +607,4 @@ This component exposes several custom css properties which affect the appearance
 
 ## Special Note
 
-Thank you to the folks at Font Awesome for making these svg icons available to the public! Check out Font Awesome for tons of high quality icons. [https://fontawesome.com/](https://fontawesome.com/)
+Thank you to the folks at Font Awesome for making these svg icons available to the public! Check out Font Awesome for tons of high quality icons. [Font Awesome](https://fontawesome.com/)

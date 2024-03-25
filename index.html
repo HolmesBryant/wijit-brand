@@ -1,56 +1,791 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Wijit-Brand</title>
     <script defer src="extra/scripts.js"></script>
-    <script type="module" src="wijit-brand.js"></script>
-    <!-- <script type="module" src="dist/wijit-brand.min.js"></script> -->
+    <!-- <script type="module" src="wijit-brand.js"></script> -->
+    <script type="module" src="dist/wijit-brand.min.js"></script>
+    <script type="module" src="extra/wijit-code.min.js"></script>
+    <script type="module" src="extra/wijit-form.min.js"></script>
     <link rel="stylesheet" href="extra/styles.css">
 
     <style>
-        wijit-brand {
-            --color: limegreen;
-            --stroke-color: orange;
-            --stroke-width: 20;
-            width: 100%;
-            height: 100%;
-          }
+      wijit-brand {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 1rem;
+      }
 
-          #facebook {
+      #ex5 {
+        --color: teal;
+      }
 
-          }
+      #ex6 {
+        --stroke-color:orange;
+        --stroke-width:10;
+      }
 
-          #linkedin {
-            --filter: blur(10px);
-          }
+      #ex7 {
+        --filter:
+          drop-shadow(10px 20px 8px black)
+          blur(2px);
+      }
 
-          #html5 {
-            --filter: drop-shadow(10px 10px 15px black);
-          }
+      #ex8 {
+        --filter: url(#inset) blur(2px);
+      }
+
+      #ex9 {
+        cursor: pointer;
+        --stroke-color: teal;
+        --stroke-width: 10px;
+      }
+
+      #ex9:hover {
+        --color: coral;
+        --filter: drop-shadow(0 20px 8px black);
+      }
+
+      #ex9:active {
+        --filter: url(#inset);
+      }
     </style>
 </head>
 <body>
-<h1>Wijit-Brand Web Component</h1>
-<p>A custom element that creates icons representing various brand logos</p>
-<details>
-    <summary>Readme</summary>
-    <div id="instructions"></div>
-</details>
+<header>
+  <h1>Wijit-Brand Web Component</h1>
+  <p>A custom element that creates icons representing various brand logos</p>
+</header>
 
-<section class="row">
-    <wijit-brand id="facebook"brand="facebook" link="https://google.com" inset>
-        <small>Facebook</small>
-    </wijit-brand>
-    <wijit-brand id="linkedin"brand="linkedin" link="https://hearthfirefarm.org">
-        <h1>LinkedIn</h1>
-    </wijit-brand>
+<aside>
+  <details>
+      <summary>Readme</summary>
+      <div id="instructions"></div>
+  </details>
+</aside>
 
-    <wijit-brand id="html5" brand="html5" viewbox="-60 0 512 512">
-        <small>Built with HTML5</small>
-    </wijit-brand>
-</section>
+<aside>
+  <h2>Demo</h2>
+  <wijit-form>
+    <section class="row">
+      <section>
+      <header><strong>Attributes and Slots</strong></header>
+        <div>
+          <label for="demo-brand">brand</label>
+          <input id="demo-brand" list="demo-brand-list" oninput="change(event, 'brand')">
+        </div>
 
+        <div>
+          <label for="demo-viewbox">viewbox</label>
+          <input id="viewbox" onchange="change(event, 'viewbox')">
+        </div>
+
+        <div>
+          <label for="demo-caption">caption</label>
+          <input id="demo-caption" oninput="change(event, 'caption')">
+        </div>
+      </section>
+
+      <section class="start">
+      <header><strong>CSS Properties</strong></header>
+        <div>
+          <label for="demo-color">color</label>
+          <input type="color" id="demo-color" onchange="change(event, '--color')">
+        </div>
+
+        <fieldset class="row space-between">
+          <legend>stroke</legend>
+          <div class="center">
+            <label for="demo-strokecolor">color</label>
+            <input type="color" id="demo-strokecolor" onchange="change(event, '--stroke-color')">
+          </div>
+
+          <div>
+            <label for="demo-strokewidth">width</label>
+            <input id="demo-strokewidth" oninput="change(event, '--stroke-width')">
+          </div>
+        </fieldset>
+
+        <div>
+          <label for="demo-filter">filter</label>
+          <select id="demo-filter" onchange="change(event, '--filter')">
+            <option>drop-shadow(0 20px 8px black)</option>
+            <option>url(#inset)</option>
+            <option>blur(10px)</option>
+            <option>contrast(200%)</option>
+            <option>grayscale(80%)</option>
+            <option>hue-rotate(90deg)</option>
+          </select>
+        </div>
+      </section>
+
+      <section class="center">
+        <wijit-brand brand="HTML5" id="demo-item"></wijit-brand>
+      </section>
+    </section>
+  </wijit-form>
+</aside>
+
+<main>
+  <h2>Examples</h2>
+  <section class="row">
+    <figure>
+    <header><h3>Basic</h3></header>
+      <wijit-brand id="ex1"></wijit-brand>
+      <figcaption>
+          <wijit-code highlight="html" indent="0">
+            <textarea>
+              <wijit-brand brand="html5">
+              </wijit-brand>
+            </textarea>
+          </wijit-code>
+      </figcaption>
+    </figure>
+
+    <figure>
+    <header><h3>Add a Link</h3></header>
+      <wijit-brand id="ex2" link="https://developer.mozilla.org/en-US/docs/Web/HTML">
+      </wijit-brand>
+      <figcaption>
+          <wijit-code highlight="html">
+            <textarea>
+              <wijit-brand
+                brand="html"
+                link="https://...">
+              </wijit-brand>
+            </textarea>
+          </wijit-code>
+      </figcaption>
+    </figure>
+
+    <figure>
+    <header><h3>Add a Caption</h3></header>
+      <wijit-brand id="ex3">
+        <small>Made with HTML5</small>
+      </wijit-brand>
+      <figcaption>
+        <wijit-code highlight="html">
+          <textarea>
+            <wijit-brand brand="html">
+              Made with HTML5
+            </wijit-brand>
+          </textarea>
+        </wijit-code>
+      </figcaption>
+    </figure>
+
+    <figure>
+    <header><h3>Change Viewbox</h3></header>
+      <wijit-brand id="ex4" viewbox="50 50 250 250"> </wijit-brand>
+      <figcaption>
+        <wijit-code highlight="html">
+          <textarea>
+            <wijit-brand
+              brand="html5"
+              viewbox="50 50 250 250">
+            </wijit-brand>
+          </textarea>
+        </wijit-code>
+      </figcaption>
+    </figure>
+
+    <figure>
+    <header><h3>Change Color</h3></header>
+      <wijit-brand id="ex5"> </wijit-brand>
+      <figcaption>
+        <wijit-code highlight="html">
+          <textarea>
+            <style>
+              wijit-brand {
+                --color: teal;
+              }
+            </style>
+
+            <wijit-brand brand="html5">
+            </wijit-brand>
+          </textarea>
+        </wijit-code>
+      </figcaption>
+    </figure>
+
+    <figure>
+    <header><h3>Add Stroke</h3></header>
+      <wijit-brand id="ex6"> </wijit-brand>
+      <figcaption>
+        <wijit-code highlight="html">
+          <textarea>
+            <style>
+              wijit-brand {
+                --stroke-color: orange;
+                --stroke-width: 10;
+              }
+            </style>
+
+            <wijit-brand brand="html5">
+            </wijit-brand>
+          </textarea>
+        </wijit-code>
+      </figcaption>
+    </figure>
+
+    <figure>
+    <header><h3>Add Filter</h3></header>
+      <wijit-brand id="ex7"> </wijit-brand>
+      <figcaption>
+        <wijit-code highlight="html" indent="5px">
+          <textarea>
+            <style>
+              wijit-brand {
+                --filter:
+                  drop-shadow(10px 20px 8px black)
+                  blur(2px);
+              }
+            </style>
+
+            <wijit-brand brand="html5">
+            </wijit-brand>
+          </textarea>
+        </wijit-code>
+      </figcaption>
+    </figure>
+
+    <figure>
+    <header><h3>Inset</h3></header>
+      <wijit-brand id="ex8"> </wijit-brand>
+      <figcaption>
+       <wijit-code highlight="html">
+        <textarea>
+          <style>
+            wijit-brand {
+              --filter: url(#inset);
+            }
+          </style>
+
+          <wijit-brand brand="html5">
+          </wijit-brand>
+        </textarea>
+       </wijit-code>
+      </figcaption>
+    </figure>
+
+    <figure>
+    <header><h3>Hover/Active</h3></header>
+      <wijit-brand id="ex9"></wijit-brand>
+      <figcaption>
+        <wijit-code highlight="html">
+          <textarea>
+            <style>
+              wijit-code {
+                cursor: pointer;
+                --stroke-color: teal;
+                --stroke-width: 10px;
+              }
+
+              wijit-code:hover {
+                --color: coral;
+                --filter: drop-shadow(0 20px 8px black);
+              }
+
+              wijit-code:active {
+                --filter: url(#inset);
+              }
+            </style>
+
+            <wijit-brand brand="html"></wijit-brand>
+          </textarea>
+        </wijit-code>
+      </figcaption>
+    </figure>
+  <section>
+</main>
+
+<datalist id="demo-brand-list">
+<option>42-group</option>
+<option>500px</option>
+<option>accessible-icon</option>
+<option>accusoft</option>
+<option>adn</option>
+<option>adversal</option>
+<option>affiliatetheme</option>
+<option>airbnb</option>
+<option>algolia</option>
+<option>alipay</option>
+<option>amazon</option>
+<option>amazon-pay</option>
+<option>amilia</option>
+<option>android</option>
+<option>angellist</option>
+<option>angrycreative</option>
+<option>angular</option>
+<option>app-store</option>
+<option>app-store-ios</option>
+<option>apper</option>
+<option>apple</option>
+<option>apple-pay</option>
+<option>artstation</option>
+<option>asymmetrik</option>
+<option>atlassian</option>
+<option>audible</option>
+<option>autoprefixer</option>
+<option>avianex</option>
+<option>aviato</option>
+<option>aws</option>
+<option>bandcamp</option>
+<option>battle-net</option>
+<option>behance</option>
+<option>bilibili</option>
+<option>bimobject</option>
+<option>bitbucket</option>
+<option>bitcoin</option>
+<option>bity</option>
+<option>black-tie</option>
+<option>blackberry</option>
+<option>blogger</option>
+<option>blogger-b</option>
+<option>bluetooth</option>
+<option>bluetooth-b</option>
+<option>bootstrap</option>
+<option>bots</option>
+<option>brave</option>
+<option>brave-reverse</option>
+<option>btc</option>
+<option>buffer</option>
+<option>buromobelexperte</option>
+<option>buy-n-large</option>
+<option>buysellads</option>
+<option>canadian-maple-leaf</option>
+<option>cc-amazon-pay</option>
+<option>cc-amex</option>
+<option>cc-apple-pay</option>
+<option>cc-diners-club</option>
+<option>cc-discover</option>
+<option>cc-jcb</option>
+<option>cc-mastercard</option>
+<option>cc-paypal</option>
+<option>cc-stripe</option>
+<option>cc-visa</option>
+<option>centercode</option>
+<option>centos</option>
+<option>chrome</option>
+<option>chromecast</option>
+<option>cloudflare</option>
+<option>cloudscale</option>
+<option>cloudsmith</option>
+<option>cloudversify</option>
+<option>cmplid</option>
+<option>codepen</option>
+<option>codiepie</option>
+<option>confluence</option>
+<option>connectdevelop</option>
+<option>contao</option>
+<option>cotton-bureau</option>
+<option>cpanel</option>
+<option>creative-commons</option>
+<option>creative-commons-by</option>
+<option>creative-commons-nc</option>
+<option>creative-commons-nc-eu</option>
+<option>creative-commons-nc-jp</option>
+<option>creative-commons-nd</option>
+<option>creative-commons-pd</option>
+<option>creative-commons-pd-alt</option>
+<option>creative-commons-remix</option>
+<option>creative-commons-sa</option>
+<option>creative-commons-sampling</option>
+<option>creative-commons-sampling-plus</option>
+<option>creative-commons-share</option>
+<option>creative-commons-zero</option>
+<option>critical-role</option>
+<option>css3</option>
+<option>css3-alt</option>
+<option>cuttlefish</option>
+<option>d-and-d</option>
+<option>d-and-d-beyond</option>
+<option>dailymotion</option>
+<option>dashcube</option>
+<option>debian</option>
+<option>deezer</option>
+<option>delicious</option>
+<option>deploydog</option>
+<option>deskpro</option>
+<option>dev</option>
+<option>deviantart</option>
+<option>dhl</option>
+<option>diaspora</option>
+<option>digg</option>
+<option>digital-ocean</option>
+<option>discord</option>
+<option>discourse</option>
+<option>dochub</option>
+<option>docker</option>
+<option>draft2digital</option>
+<option>dribbble</option>
+<option>dropbox</option>
+<option>drupal</option>
+<option>dyalog</option>
+<option>earlybirds</option>
+<option>ebay</option>
+<option>edge</option>
+<option>edge-legacy</option>
+<option>elementor</option>
+<option>ello</option>
+<option>ember</option>
+<option>empire</option>
+<option>envira</option>
+<option>erlang</option>
+<option>ethereum</option>
+<option>etsy</option>
+<option>evernote</option>
+<option>expeditedssl</option>
+<option>facebook</option>
+<option>facebook-f</option>
+<option>facebook-messenger</option>
+<option>fantasy-flight-games</option>
+<option>fedex</option>
+<option>fedora</option>
+<option>figma</option>
+<option>firefox</option>
+<option>firefox-browser</option>
+<option>first-order</option>
+<option>first-order-alt</option>
+<option>firstdraft</option>
+<option>flickr</option>
+<option>flipboard</option>
+<option>fly</option>
+<option>font-awesome</option>
+<option>fonticons</option>
+<option>fonticons-fi</option>
+<option>fort-awesome</option>
+<option>fort-awesome-alt</option>
+<option>forumbee</option>
+<option>foursquare</option>
+<option>free-code-camp</option>
+<option>freebsd</option>
+<option>fulcrum</option>
+<option>galactic-republic</option>
+<option>galactic-senate</option>
+<option>get-pocket</option>
+<option>gg</option>
+<option>gg-circle</option>
+<option>git</option>
+<option>git-alt</option>
+<option>github</option>
+<option>github-alt</option>
+<option>gitkraken</option>
+<option>gitlab</option>
+<option>gitter</option>
+<option>glide</option>
+<option>glide-g</option>
+<option>gofore</option>
+<option>golang</option>
+<option>goodreads</option>
+<option>goodreads-g</option>
+<option>google</option>
+<option>google-drive</option>
+<option>google-pay</option>
+<option>google-play</option>
+<option>google-plus</option>
+<option>google-plus-g</option>
+<option>google-scholar</option>
+<option>google-wallet</option>
+<option>gratipay</option>
+<option>grav</option>
+<option>gripfire</option>
+<option>grunt</option>
+<option>guilded</option>
+<option>gulp</option>
+<option>hacker-news</option>
+<option>hackerrank</option>
+<option>hashnode</option>
+<option>hips</option>
+<option>hire-a-helper</option>
+<option>hive</option>
+<option>hooli</option>
+<option>hornbill</option>
+<option>hotjar</option>
+<option>houzz</option>
+<option>html5</option>
+<option>hubspot</option>
+<option>ideal</option>
+<option>imdb</option>
+<option>instagram</option>
+<option>instalod</option>
+<option>intercom</option>
+<option>internet-explorer</option>
+<option>invision</option>
+<option>ioxhost</option>
+<option>itch-io</option>
+<option>itunes</option>
+<option>itunes-note</option>
+<option>java</option>
+<option>jedi-order</option>
+<option>jenkins</option>
+<option>jira</option>
+<option>joget</option>
+<option>joomla</option>
+<option>js</option>
+<option>jsfiddle</option>
+<option>kaggle</option>
+<option>keybase</option>
+<option>keycdn</option>
+<option>kickstarter</option>
+<option>kickstarter-k</option>
+<option>korvue</option>
+<option>laravel</option>
+<option>lastfm</option>
+<option>leanpub</option>
+<option>less</option>
+<option>letterboxd</option>
+<option>line</option>
+<option>linkedin</option>
+<option>linkedin-in</option>
+<option>linode</option>
+<option>linux</option>
+<option>lyft</option>
+<option>magento</option>
+<option>mailchimp</option>
+<option>mandalorian</option>
+<option>markdown</option>
+<option>mastodon</option>
+<option>maxcdn</option>
+<option>mdb</option>
+<option>medapps</option>
+<option>medium</option>
+<option>medrt</option>
+<option>meetup</option>
+<option>megaport</option>
+<option>mendeley</option>
+<option>meta</option>
+<option>microblog</option>
+<option>microsoft</option>
+<option>mintbit</option>
+<option>mix</option>
+<option>mixcloud</option>
+<option>mixer</option>
+<option>mizuni</option>
+<option>modx</option>
+<option>monero</option>
+<option>napster</option>
+<option>neos</option>
+<option>nfc-directional</option>
+<option>nfc-symbol</option>
+<option>nimblr</option>
+<option>node</option>
+<option>node-js</option>
+<option>npm</option>
+<option>ns8</option>
+<option>nutritionix</option>
+<option>octopus-deploy</option>
+<option>odnoklassniki</option>
+<option>odysee</option>
+<option>old-republic</option>
+<option>opencart</option>
+<option>openid</option>
+<option>opensuse</option>
+<option>opera</option>
+<option>optin-monster</option>
+<option>orcid</option>
+<option>osi</option>
+<option>padlet</option>
+<option>page4</option>
+<option>pagelines</option>
+<option>palfed</option>
+<option>patreon</option>
+<option>paypal</option>
+<option>perbyte</option>
+<option>periscope</option>
+<option>phabricator</option>
+<option>phoenix-framework</option>
+<option>phoenix-squadron</option>
+<option>php</option>
+<option>pied-piper</option>
+<option>pied-piper-alt</option>
+<option>pied-piper-hat</option>
+<option>pied-piper-pp</option>
+<option>pinterest</option>
+<option>pinterest-p</option>
+<option>pix</option>
+<option>pixiv</option>
+<option>playstation</option>
+<option>product-hunt</option>
+<option>pushed</option>
+<option>python</option>
+<option>qq</option>
+<option>quinscape</option>
+<option>quora</option>
+<option>r-project</option>
+<option>raspberry-pi</option>
+<option>ravelry</option>
+<option>react</option>
+<option>reacteurope</option>
+<option>readme</option>
+<option>rebel</option>
+<option>red-river</option>
+<option>reddit</option>
+<option>reddit-alien</option>
+<option>redhat</option>
+<option>renren</option>
+<option>replyd</option>
+<option>researchgate</option>
+<option>resolving</option>
+<option>rev</option>
+<option>rocketchat</option>
+<option>rockrms</option>
+<option>rust</option>
+<option>safari</option>
+<option>salesforce</option>
+<option>sass</option>
+<option>schlix</option>
+<option>screenpal</option>
+<option>scribd</option>
+<option>searchengin</option>
+<option>sellcast</option>
+<option>sellsy</option>
+<option>servicestack</option>
+<option>shirtsinbulk</option>
+<option>shoelace</option>
+<option>shopify</option>
+<option>shopware</option>
+<option>signal-messenger</option>
+<option>simplybuilt</option>
+<option>sistrix</option>
+<option>sith</option>
+<option>sitrox</option>
+<option>sketch</option>
+<option>skyatlas</option>
+<option>skype</option>
+<option>slack</option>
+<option>slideshare</option>
+<option>snapchat</option>
+<option>soundcloud</option>
+<option>sourcetree</option>
+<option>space-awesome</option>
+<option>speakap</option>
+<option>speaker-deck</option>
+<option>spotify</option>
+<option>square-behance</option>
+<option>square-dribbble</option>
+<option>square-facebook</option>
+<option>square-font-awesome</option>
+<option>square-font-awesome-stroke</option>
+<option>square-git</option>
+<option>square-github</option>
+<option>square-gitlab</option>
+<option>square-google-plus</option>
+<option>square-hacker-news</option>
+<option>square-instagram</option>
+<option>square-js</option>
+<option>square-lastfm</option>
+<option>square-letterboxd</option>
+<option>square-odnoklassniki</option>
+<option>square-pied-piper</option>
+<option>square-pinterest</option>
+<option>square-reddit</option>
+<option>square-snapchat</option>
+<option>square-steam</option>
+<option>square-threads</option>
+<option>square-tumblr</option>
+<option>square-twitter</option>
+<option>square-viadeo</option>
+<option>square-vimeo</option>
+<option>square-whatsapp</option>
+<option>square-x-twitter</option>
+<option>square-xing</option>
+<option>square-youtube</option>
+<option>squarespace</option>
+<option>stack-exchange</option>
+<option>stack-overflow</option>
+<option>stackpath</option>
+<option>staylinked</option>
+<option>steam</option>
+<option>steam-symbol</option>
+<option>sticker-mule</option>
+<option>strava</option>
+<option>stripe</option>
+<option>stripe-s</option>
+<option>stubber</option>
+<option>studiovinari</option>
+<option>stumbleupon</option>
+<option>stumbleupon-circle</option>
+<option>superpowers</option>
+<option>supple</option>
+<option>suse</option>
+<option>swift</option>
+<option>symfony</option>
+<option>teamspeak</option>
+<option>telegram</option>
+<option>tencent-weibo</option>
+<option>the-red-yeti</option>
+<option>themeco</option>
+<option>themeisle</option>
+<option>think-peaks</option>
+<option>threads</option>
+<option>tiktok</option>
+<option>trade-federation</option>
+<option>trello</option>
+<option>tumblr</option>
+<option>twitch</option>
+<option>twitter</option>
+<option>typo3</option>
+<option>uber</option>
+<option>ubuntu</option>
+<option>uikit</option>
+<option>umbraco</option>
+<option>uncharted</option>
+<option>uniregistry</option>
+<option>unity</option>
+<option>unsplash</option>
+<option>untappd</option>
+<option>ups</option>
+<option>upwork</option>
+<option>usb</option>
+<option>usps</option>
+<option>ussunnah</option>
+<option>vaadin</option>
+<option>viacoin</option>
+<option>viadeo</option>
+<option>viber</option>
+<option>vimeo</option>
+<option>vimeo-v</option>
+<option>vine</option>
+<option>vk</option>
+<option>vnv</option>
+<option>vuejs</option>
+<option>watchman-monitoring</option>
+<option>waze</option>
+<option>webflow</option>
+<option>weebly</option>
+<option>weibo</option>
+<option>weixin</option>
+<option>whatsapp</option>
+<option>whmcs</option>
+<option>wikipedia-w</option>
+<option>windows</option>
+<option>wirsindhandwerk</option>
+<option>wix</option>
+<option>wizards-of-the-coast</option>
+<option>wodu</option>
+<option>wolf-pack-battalion</option>
+<option>wordpress</option>
+<option>wordpress-simple</option>
+<option>wpbeginner</option>
+<option>wpexplorer</option>
+<option>wpforms</option>
+<option>wpressr</option>
+<option>x-twitter</option>
+<option>xbox</option>
+<option>xing</option>
+<option>y-combinator</option>
+<option>yahoo</option>
+<option>yammer</option>
+<option>yandex</option>
+<option>yandex-international</option>
+<option>yarn</option>
+<option>yelp</option>
+<option>yoast</option>
+<option>youtube</option>
+<option>zhihu"
+</datalist>
 </body>
 </html>
