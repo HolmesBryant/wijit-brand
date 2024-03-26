@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Wijit-Brand</title>
     <script defer src="extra/scripts.js"></script>
-    <!-- <script type="module" src="wijit-brand.js"></script> -->
+    <!-- <script type="module" src="src/wijit-brand.js"></script> -->
     <script type="module" src="dist/wijit-brand.min.js"></script>
     <script type="module" src="extra/wijit-code.min.js"></script>
     <script type="module" src="extra/wijit-form.min.js"></script>
@@ -111,6 +111,7 @@
         <div>
           <label for="demo-filter">filter</label>
           <select id="demo-filter" onchange="change(event, '--filter')">
+            <option value="">none (default)</option>
             <option>drop-shadow(0 20px 8px black)</option>
             <option>url(#inset)</option>
             <option>blur(10px)</option>

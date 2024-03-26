@@ -16,6 +16,6 @@ export default {
 	string: /["'`][^"'`]*["'`]/g,
 	variable: /\$\s*{[^}]+}/g,
 	comment: /<!--([\s\S]*?)-->/g,
-	selector: /[:\w\d-]+\s*(?={)/g
+	// selector: /[:\w\d-]+\s*(?={)/g
 }
 
