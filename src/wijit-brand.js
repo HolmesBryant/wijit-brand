@@ -2,7 +2,7 @@
  * @author Holmes Bryant <https://github.com/HolmesBryant>
  * @license GPL-3.0
  */
-export default class WijitBrand extends HTMLElement {
+export class WijitBrand extends HTMLElement {
   #brand;
 
   #link;
@@ -645,4 +645,8 @@ export default class WijitBrand extends HTMLElement {
   }
 }
 
-document.addEventListener('DOMContentLoaded', customElements.define('wijit-brand', WijitBrand));
+document.addEventListener('DOMContentLoaded', () => {
+  if (!customElements.get('wijit-brand')) {
+    customElements.define('wijit-brand', WijitBrand);
+  }
+});
